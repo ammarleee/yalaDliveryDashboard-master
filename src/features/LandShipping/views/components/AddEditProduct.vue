@@ -83,17 +83,17 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12" sm="6">
+          <v-col cols="12" sm="12">
             <v-autocomplete
               item-value="_id"
-              v-model="ingeradient"
-              :items="categoryData"
+              v-model="myProducts.ingredients"
+              :items="ingeradients"
               item-text="name"
               outlined
               dense
               chips
               small-chips
-              label="المطونات"
+              label="المكونات"
               multiple
               color="blue-grey lighten-2"
             >
@@ -103,10 +103,10 @@
                   :input-value="data.selected"
                   close
                   @click="data.select"
-                  @click:close="remove(data.item)"
+                  @click:close="removeIngeradients(data.item)"
                 >
                   <v-avatar left>
-                    <v-img :src="data.item.avatar"></v-img>
+                    <v-img :src="data.item.img"></v-img>
                   </v-avatar>
                   {{ data.item.name }}
                 </v-chip>
@@ -114,7 +114,7 @@
             </v-autocomplete>
           </v-col>
         </v-row>
-            {{ingeradient}}  last
+        {{ myProducts.ingredients }} ss
         <v-row>
           <v-col cols="12" sm="12">
             <div v-if="myProducts.img" class="d-flex justify-content-around">
@@ -176,7 +176,7 @@
 import productsApi from "../../services/productsApi";
 
 export default {
-  props: ["myProducts", "categoryData", "resturantId", "productData"],
+  props: ["myProducts", "categoryData", "resturantId", "productData", "ingeradients"],
   data() {
     return {
       isFromValid: false,
@@ -184,7 +184,7 @@ export default {
       loading: false,
       loadingDelImg: false,
       ProductImg: {},
-      ingeradient: null,
+      ingeradient: [],
       selectSize: [
         { sizeName: "larg", value: 1 },
         { sizeName: "medium", value: 2 },
@@ -193,6 +193,11 @@ export default {
     };
   },
   methods: {
+    removeIngeradients(item) {
+       const index = this.myProducts.ingredients.indexOf(item._id)
+         this.myProducts.ingredients.splice(index, 1)
+      console.log(index);
+    },
     addclass(index) {
       console.log(index);
       let elemnt = document.querySelectorAll(".imgProductAction");
@@ -208,7 +213,9 @@ export default {
       this.showDeleteImgProductDialog = true;
     },
     async addNewproduct() {
-      console.log(this.myProducts);
+      console.log(this.myProducts.ingredients);
+      console.log(typeof this.myProducts.ingredients[0]);
+      console.log(typeof this.myProducts.ingredients);
       this.myProducts.resturantId = this.resturantId;
       const formData = new FormData();
       formData.append("name", this.myProducts.name);
@@ -245,6 +252,9 @@ export default {
         try {
           for (const i of Object.keys(this.images)) {
             formData.append("files", this.images[i]);
+          }
+          for (const i of Object.keys(this.myProducts.ingredients)) {
+            formData.append("ingredients", this.myProducts.ingredients[i]);
           }
           this.loading = true;
           const res = await productsApi.CreateProducts(formData);

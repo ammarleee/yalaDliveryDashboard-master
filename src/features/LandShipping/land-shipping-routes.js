@@ -60,6 +60,13 @@ export default [
     beforeEnter: guardDashBoard,
     component: () => import("./views/DriverList.vue")
   },
+  {
+    path: "/shipping/ingeradient",
+    name: "ingeradient",
+    meta: { layout: "dashboard" },
+    beforeEnter: guardDashBoard,
+    component: () => import("./views/ingeradient.vue")
+  },
 
   {
     path: "/shipping/profile",

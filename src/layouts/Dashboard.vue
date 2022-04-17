@@ -33,7 +33,14 @@
           <v-list-item-title v-text="child.title"></v-list-item-title>
         </v-list-item>
       </v-list-group>
-
+      <div>
+        <v-list-item-content class=" mb-3">
+          <v-list-item to="/shipping/ingeradient" class="justify-content-between">
+            <v-icon color="error" large>mdi-shape</v-icon>
+            <p class="m-0 pr-6">الكونات</p>
+          </v-list-item>
+        </v-list-item-content>
+      </div>
       <div>
         <v-list-item-content class=" mb-3">
           <v-list-item to="/shipping/balance" class="justify-content-between">
@@ -101,11 +108,6 @@ export default {
           title: "إنشاء حساب",
           icon: "mdi-truck-delivery",
           child: [
-            // {
-            //   href: "/shipping/shipment",
-            //   title: "حساب إنشاء كابتن",
-            //   icon: "fa fa-scroll"
-            // },
             {
               href: "/shipping/Drivers",
               title: "إنشاء كابتن",
@@ -125,7 +127,8 @@ export default {
               href: "/shipping/jobApplicants",
               title: "المتقدمين علي وظائف",
               icon: "mdi-account-group"
-            }
+            },
+            
           ]
         }
       ]

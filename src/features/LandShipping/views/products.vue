@@ -13,10 +13,11 @@
           :resturantId="resturantId"
           @EditProduct="EditArr($event, productData)"
           @AddCategory="AddToArr($event, productData)"
+          :ingeradients="ingeradients"
         ></AddEditProduct>
       </v-dialog>
       <div class="d-flex justify-content-right mt-10 mb-5">
-        <AddBtn :content="'إضافة اكلة'" @submit="addProduct = true, myProducts = {}"></AddBtn>
+        <AddBtn :content="'إضافة اكلة'" @submit="(addProduct = true), (myProducts = {})"></AddBtn>
       </div>
       <productTable
         v-if="productData"
@@ -50,7 +51,8 @@ export default {
       products: [],
       images: null,
       imagesProduct: [],
-      openDeleteProductImg: false
+      openDeleteProductImg: false,
+      ingeradients: []
     };
   },
   async mounted() {
@@ -58,17 +60,21 @@ export default {
       this.resturantId = this.Resturantid;
       this.loadingMainData = true;
       const res = await productsApi.getProducts(this.Resturantid);
+      console.log(res);
       this.productData = res.data.products;
       const ress = await productsApi.getCategories(this.Resturantid);
       this.categoryData = ress.data.categoryies;
+      console.log(ress);
+      const ingeradient = await productsApi.getIngeradient();
+      console.log(ingeradient);
+      this.ingeradients = ingeradient.data.ingredients;
       this.loadingMainData = false;
     } catch (error) {
       console.log(error);
       this.loadingMainData = false;
     }
   },
-  methods: {
-  }
+  methods: {}
 };
 </script>
 <style lang="scss" scoped></style>
