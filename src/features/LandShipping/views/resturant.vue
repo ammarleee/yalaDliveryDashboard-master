@@ -77,7 +77,7 @@
       ></deleteItemsConfirmMsg>
     </v-dialog>
 
-    <v-dialog v-model="showprodandCategModel" width="900" persistent>
+    <v-dialog v-model="showprodandCategModel" width="1100" persistent>
       <component
         v-if="showprodandCategModel"
         @close="showprodandCategModel = false"

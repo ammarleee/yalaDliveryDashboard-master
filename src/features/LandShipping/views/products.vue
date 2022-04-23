@@ -4,7 +4,7 @@
       <v-btn icon @click="$emit('close')">
         <v-icon>mdi-close</v-icon>
       </v-btn>
-      <v-dialog v-model="addProduct" width="800" persistent>
+      <v-dialog v-model="addProduct" width="900" persistent>
         <AddEditProduct
           @closeDilog="addProduct = false"
           :myProducts="myProducts"
@@ -26,6 +26,7 @@
         @myProductsEdit="myProducts = $event"
         @productId="DeleteObjFromArr(productData, $event)"
         :loadingMain="loadingMainData"
+        :ingeradients="ingeradients"
       ></productTable>
     </v-card>
   </div>

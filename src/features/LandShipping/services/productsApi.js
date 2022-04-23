@@ -13,8 +13,8 @@ class products {
   static deleteProduct(productId) {
     return axios().delete(`${productId}`);
   }
-  static getProducts(products) {
-    return axios().get(`resturant/products/${products}`);
+  static getProducts(resturantId) {
+    return axios().get(`resturant/products/${resturantId}`);
   }
   static getCategories(products) {
     return axios().get(`resturant/categories/${products}`);

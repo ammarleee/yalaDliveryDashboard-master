@@ -78,6 +78,7 @@
               item-value="value"
               v-model="myProducts.size"
               placeholder="الحجم"
+              class="size"
             >
             </v-autocomplete>
           </v-col>
@@ -114,7 +115,6 @@
             </v-autocomplete>
           </v-col>
         </v-row>
-        {{ myProducts.ingredients }} ss
         <v-row>
           <v-col cols="12" sm="12">
             <div v-if="myProducts.img" class="d-flex justify-content-around">
@@ -186,9 +186,9 @@ export default {
       ProductImg: {},
       ingeradient: [],
       selectSize: [
-        { sizeName: "larg", value: 1 },
-        { sizeName: "medium", value: 2 },
-        { sizeName: "small", value: 3 }
+        { sizeName: "كبير", value: 3 },
+        { sizeName: "متوسط", value: 2 },
+        { sizeName: "صغير", value: 1 },
       ]
     };
   },
@@ -315,4 +315,5 @@ export default {
 .addHover {
   visibility: visible;
 }
+
 </style>
