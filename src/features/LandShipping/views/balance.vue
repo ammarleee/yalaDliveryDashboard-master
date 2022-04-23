@@ -1,6 +1,6 @@
 <template>
     <div>
-balance
+balancee
     </div>
 </template>
 
